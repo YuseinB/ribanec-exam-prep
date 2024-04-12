@@ -48,7 +48,7 @@ jobs:
 # staro do tuk
 
   deploy:
-    needs: build_test
+    needs: ru-ui-test
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to production
