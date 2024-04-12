@@ -24,3 +24,24 @@ jobs:
       run: npm run test:unit
     - name: Display softuni username
       run: echo "ribanec"
+
+  ru-ui-test:
+    needs: build_test
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout the repo
+      uses: actions/checkout@v4
+    - name: Use Node.js 20.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+        cache: 'npm'
+    - name: Install NPM dependencies
+      run: npm install
+    - name: install playwright
+      run: npx playwright install
+    - name: Start application
+      run: npm run start &
+    - name: Run the UI tests
+      run: npm run test:ui
